@@ -43,3 +43,4 @@ export default function compareGuess(correctWeapon: gunData|meleeData, guess: gu
 
     return comparison;
 }
+
