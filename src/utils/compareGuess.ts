@@ -1,4 +1,4 @@
-import { guessCorrectness, gunData, gunGuessCorrectness, meleeData, meleeGuessCorrectness } from "../types/weaponData";
+import { guessCorrectness, gunData, gunGuessCorrectness, meleeData, meleeGuessCorrectness, weaponData } from "../types/weaponData";
 
 /**
  * Compares a guess and spits out a high/low/right or wrong/right comparison.
@@ -6,7 +6,7 @@ import { guessCorrectness, gunData, gunGuessCorrectness, meleeData, meleeGuessCo
  * @param correctWeapon the correct weapon to compare to
  * @param guess the current guess
  */
-export default function compareGuess(correctWeapon: gunData|meleeData, guess: gunData|meleeData): guessCorrectness | meleeGuessCorrectness | gunGuessCorrectness{
+export default function compareGuess(correctWeapon: weaponData, guess:  weaponData): guessCorrectness | meleeGuessCorrectness | gunGuessCorrectness{
 
     //just hardcode the comparisons at this point. A clever solution isn't worth it.
     //1 = right, 0 = low, 2 = high
