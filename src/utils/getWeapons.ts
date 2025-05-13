@@ -1,12 +1,12 @@
 import weaponsData from '../data.json'
 import { queryWeapon } from '../fetch';
-import {gunData, meleeData, weaponData, weaponQuery} from '../types/weaponData';
+import {Guess,  weaponQuery} from '../types/weaponData';
 /**
  * Array-fy the data.json and spit out a random weapon.
  * 
  */
 
-export function getRandomWeapon():gunData | meleeData{
+/**export function getRandomWeapon():gunData | meleeData{
     const endPoint = 599;
     const weaponData = Object.entries(weaponsData.ExportWeapons);
 
@@ -18,7 +18,7 @@ export function getRandomWeapon():gunData | meleeData{
         return randomWeapon as meleeData;
     }
     return randomWeapon as gunData;
-}
+} */
 
 function getRandomWeaponName(): string{
     const end = 599;
@@ -26,24 +26,24 @@ function getRandomWeaponName(): string{
     return Object.entries(weaponsData.ExportWeapons)[Math.floor(Math.random() * end)][1].name;
 }
 
-export async function fetchRandomWeapon(): Promise<weaponQuery>{
+export async function fetchRandomWeapon(): Promise<Guess>{
     try{
         const res = await queryWeapon(getRandomWeaponName());
-        return {
-            category: res.productCategory,
-            introduced: res.introduced.date,
-            masteryReq: res.masteryReq,
-            tags: res.tags,
-            isPrime: res.isPrime,
-            damage: res.damage,
-        } as weaponQuery
+        return new Guess(
+            res.productCategory,
+            res.introduced.date,
+            res.masteryReq,
+            res.tags,
+            res.isPrime,
+            res.damage,
+        )
     }catch(e){
         console.error(e);
         return Promise.reject(e);
     }
 }
 
-export async function fetchGuess(guess: string): Promise<weaponQuery>{
+export async function fetchGuess(guess: string): Promise<Guess>{
     try{
         const res = await queryWeapon(guess);
         return {
@@ -53,7 +53,7 @@ export async function fetchGuess(guess: string): Promise<weaponQuery>{
             tags: res.tags,
             isPrime: res.isPrime,
             damage: res.damage,
-        } as weaponQuery
+        } as Guess
     }catch(e){
         console.error(e);
         return Promise.reject(e);
@@ -61,5 +61,5 @@ export async function fetchGuess(guess: string): Promise<weaponQuery>{
 }
 
 
-console.log(await fetchRandomWeapon(), await queryWeapon('Boltace'));
+
 
