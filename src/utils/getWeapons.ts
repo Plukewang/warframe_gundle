@@ -30,6 +30,7 @@ export async function fetchRandomWeapon(): Promise<Guess>{
     try{
         const res = await queryWeapon(getRandomWeaponName());
         return new Guess(
+            res.name,
             res.productCategory,
             res.introduced.date,
             res.masteryReq,
@@ -47,6 +48,7 @@ export async function fetchGuess(guess: string): Promise<Guess>{
     try{
         const res = await queryWeapon(guess);
         return {
+            name: res.name,
             category: res.productCategory,
             introduced: res.introduced.date,
             masteryReq: res.masteryReq,
