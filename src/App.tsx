@@ -1,34 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+
 
 import './App.css'
+import Search from './ui/search'
+import { useGameStore } from './gamelogic';
+import {  Guess, weaponData } from './types/weaponData';
+import { GuessCorrectness } from './types/guessCorrectness';
+import { GuessResult } from './ui/guess';
+import GameEndModal from './ui/GameEndModal';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  //history state of current guesses.
+  const guessHistory = useGameStore((state)=>state.guessHistory);
+  const setHistory = useGameStore((state)=>state.setGuesses);
+  const correctGuess = useGameStore((state)=>state.correctWeapon);
+  
+
+  const [gameEnd, setGameEnd] = useState<boolean>(false);
+
+  
+   /**
+   * Sync state with session storage to persist game data
+   */
+   useEffect(()=>{
+      setHistory(JSON.parse(sessionStorage.getItem('game')|| JSON.stringify([])));
+  },[])
+
+  /**
+   * Sync state with correct answer
+   */
+
+  useEffect(()=>{
+    //reset the game if correct
+      if(guessHistory[guessHistory.length-1]?.name===correctGuess.name || guessHistory.length>5){
+        setGameEnd(true);
+      }
+
+  },[guessHistory])
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1 className='hook_title'>Guess a weapon from Warframe!</h1>
+      <Search/>
+      <GameEndModal 
+        control={gameEnd} 
+        winLose={guessHistory[guessHistory.length-1]?.name===correctGuess.name? true:false}
+        closeGame={()=>setGameEnd(false)}
+      />
+
+      <ul>
+          {
+            guessHistory.map((guess: GuessCorrectness, i)=>{
+              return <GuessResult
+                key={i}
+                  guess={guess}
+                  guessImageURL=''
+              />
+            })
+          }
+      </ul>
+      
 
 
     </>
