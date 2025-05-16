@@ -60,6 +60,45 @@ body{
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 10px;
+  list-style-type: none;
+}
+
+.guess{
+  display: flex;
+  flex-direction: column;
+  justify-content: sp;
+  align-items: center;
+  border: 2px solid gray;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  height: 100px;
+  width: 100px;
+
+  h3{
+    margin: 2px;
+  }
+  
+  p{
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  
+}
+
+.highlow{
+  color: transparent;  
+  text-shadow: 0 0 0 red;
+}
+
+
+.guessHistoryList{
+  list-style-type: none;
+  flex-direction: row;
+  justify-content: center;
+  width: 100;
+  padding: 10px;
 }
 
 #root {

@@ -52,7 +52,7 @@ function App() {
         closeGame={()=>setGameEnd(false)}
       />
 
-      <ul>
+      <ul className='guessHistoryList'>
           {
             guessHistory.map((guess: GuessCorrectness, i)=>{
               return <GuessResult

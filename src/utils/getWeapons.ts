@@ -32,7 +32,7 @@ export async function fetchRandomWeapon(): Promise<Guess>{
         return new Guess(
             res.name,
             res.productCategory,
-            res.introduced.date,
+            res.releaseDate.split('-'),
             res.masteryReq,
             res.tags,
             res.isPrime,
@@ -50,7 +50,7 @@ export async function fetchGuess(guess: string): Promise<Guess>{
         return {
             name: res.name,
             category: res.productCategory,
-            introduced: res.introduced.date,
+            introduced: res.releaseDate.split('-'),
             masteryReq: res.masteryReq,
             tags: res.tags,
             isPrime: res.isPrime,

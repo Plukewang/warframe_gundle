@@ -111,7 +111,7 @@ export class Guess{
     [key:string]: any;
     name: string='';
     category: string='';
-    introduced: string='';
+    introduced: string[]=[];
     masteryReq: number=0;
     tags: string[]=[];
     isPrime: boolean=false;
@@ -121,7 +121,7 @@ export class Guess{
     constructor(
         name: string = '',
         category: string = '',
-        introduced: string = '',
+        introduced: string[] = [],
         masteryReq: number = 0,
         tags: string[] = [],
         isPrime: boolean = false,
@@ -140,10 +140,10 @@ export class Guess{
         
         let nameCorrect = this.name===other.name? true:false;
         let category = this.category===other.category? true: false;
-        let introduced = 0;
-        let masteryReq = 0;
+        let introduced = this.compareReleaseDate(other);
+        let masteryReq = this.compareMastery(other);
         let tags: string[] = [];
-        let isPrime = this.isPrime===other.isPrime? true: false;
+        let isPrime = this.isPrime? true: false;
         let damage = {};
 
         return new GuessCorrectness(
@@ -156,6 +156,28 @@ export class Guess{
             isPrime,
             damage,
         )
+    }
+
+    private compareReleaseDate(other: Guess): number{
+        //yyyy-mm-dd format so we just split it into separate numbers
+        
+        for(let i = 0;i<3;i++){
+            
+            let [thisDate, otherDate] = [Number(other.introduced[i]), Number(this.introduced[i])];
+
+            
+            if(thisDate===otherDate) continue;
+            if(thisDate>otherDate) return 0;
+            else return 2;
+        }
+
+        return 1;
+    }
+
+    private compareMastery(other: Guess): number{
+        if(this.masteryReq===other.masteryReq) return 1;
+        if(this.masteryReq>other.masteryReq) return 0;
+        else return 2;
     }
 
 }

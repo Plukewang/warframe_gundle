@@ -38,11 +38,11 @@ export class GuessCorrectness{
      */
     static  toSymbol(val: number): string{
         if(val===0){
-            return String.fromCodePoint(0x1F87B);
-        }else if(val===1){
-            return String.fromCodePoint(0x1F87B);
-        }else{
             return String.fromCodePoint(0x1F879);
+        }else if(val===1){
+            return String.fromCodePoint(0x2705);
+        }else{
+            return String.fromCodePoint(0x1F87B);
         }   
     }
 
