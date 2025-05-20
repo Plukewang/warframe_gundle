@@ -105,6 +105,30 @@ export interface weaponQuery{
     damage: any;
 }
 
+export interface damageTypes{
+    "total": number;
+    "impact": number;
+    "puncture": number;
+    "slash": number;
+    "heat": number;
+    "cold": number;
+    "electricity": number;
+    "toxin": number;
+    "blast": number;
+    "radiation": number;
+    "gas": number;
+    "magnetic": number;
+    "viral": number;
+    "corrosive": number;
+    "void": number;
+    "tau": number;
+    "cinematic": number;
+    "shieldDrain": number;
+    "healthDrain": number;
+    "energyDrain": number;
+    "true": number;
+}
+
 
 
 export class Guess{
@@ -142,9 +166,9 @@ export class Guess{
         let category = this.category===other.category? true: false;
         let introduced = this.compareReleaseDate(other);
         let masteryReq = this.compareMastery(other);
-        let tags: string[] = [];
+        let tags: string[] = this.compareTags(other);
         let isPrime = this.isPrime? true: false;
-        let damage = {};
+        let damage = this.compareDamage(other);
 
         return new GuessCorrectness(
             other.name,
@@ -175,9 +199,28 @@ export class Guess{
     }
 
     private compareMastery(other: Guess): number{
+        //high-2low-1equal-0
         if(this.masteryReq===other.masteryReq) return 1;
         if(this.masteryReq>other.masteryReq) return 0;
         else return 2;
+    }
+
+    //filter for equal tags
+    private compareTags(other: Guess): string[]{
+        return this.tags.filter((e)=>other.tags.includes(e));
+    }
+    
+    //return list of matching damage types
+    private compareDamage(other: Guess): string[]{
+        let res = [];
+
+        for(const [key,value] of Object.entries(other.damage)){
+            if(key==='total') continue;
+            if(this.damage[key] !=0 && value!=0) res.push(key);
+        }
+
+        //console.log(res)
+        return res;
     }
 
 }

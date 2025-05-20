@@ -12,7 +12,9 @@ export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
 
     const [ right,wrong] = [String.fromCodePoint(0x2705), String.fromCodePoint(0x274c)];
 
-    console.log(guess.masteryReq)
+
+    //console.log(guess.damage)
+
     return(
            
             <li >
@@ -53,13 +55,15 @@ export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
 
                     <li className="guess">
                         <h3>Factions</h3>
-                        <p>{guess.tags}</p>
+                        <p  className="guessList"> {guess.tags}</p>
                     </li>
 
                     {/* which damage types match */}
                     <li className="guess">
                         <h3>Damage</h3>
-                        <p>{}</p>
+                            {guess.damage.map((val)=>{
+                                return <p className="guessList">{val}</p>
+                            })}
                     </li>
 
                 </ul>

@@ -8,7 +8,7 @@ export class GuessCorrectness{
     masteryReq: number = 0;
     tags: string[]=[];
     isPrime: boolean=false;
-    damage: any=null;
+    damage: string[]=[];
 
     constructor(
     name: string='',
@@ -18,7 +18,7 @@ export class GuessCorrectness{
     masteryReq: number = 0,
     tags: string[]=[],
     isPrime: boolean=false,
-    damage: any=null,
+    damage: string[]=[],
     ) {
         this.name = name;
         this.nameCorrect = nameCorrect;
