@@ -41,17 +41,7 @@ function App() {
 
   return (
     <>
-      <div>
-        
-      </div>
       <h1 className='hook_title'>Guess a weapon from Warframe!</h1>
-      <Search/>
-      <GameEndModal 
-        control={gameEnd} 
-        winLose={guessHistory[guessHistory.length-1]?.name===correctGuess.name? true:false}
-        closeGame={()=>setGameEnd(false)}
-      />
-
       <ul className='guessHistoryList'>
           {
             guessHistory.map((guess: GuessCorrectness, i)=>{
@@ -63,6 +53,16 @@ function App() {
             })
           }
       </ul>
+      
+      
+      <Search/>
+      <GameEndModal 
+        control={gameEnd} 
+        winLose={guessHistory[guessHistory.length-1]?.name===correctGuess.name? true:false}
+        closeGame={()=>setGameEnd(false)}
+      />
+
+      
       
 
 

@@ -11,14 +11,17 @@ export default function SearchSuggestions({searchResults}: searchSuggestionProps
     const correctGuess = useGameStore((state)=>state.correctWeapon);
     const guessHistory = useGameStore((state)=>state.guessHistory);
 
+    
+    return searchResults.length?(
 
-    return(
-        <ul>
+        
+        <ul className="searchSuggestions">
             {
             
                 searchResults.slice(0,10).map((searchResult: weaponData, i)=>{
                     return (
                     <li
+                        className='searchSuggestionItem'
                         key={i}
                         onClick={
                             async ()=>{
@@ -40,5 +43,7 @@ export default function SearchSuggestions({searchResults}: searchSuggestionProps
                
             }
         </ul>
+    ): (
+        <></>
     )
 }

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { GuessCorrectness } from "../types/guessCorrectness";
+import { damageIconTable } from "../utils/damageIcons";
 
 
 interface guessProps{
@@ -59,11 +60,18 @@ export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
                     </li>
 
                     {/* which damage types match */}
-                    <li className="guess">
+                    <li className="guess ">
                         <h3>Damage</h3>
+                        <ul 
+                            className="damageList"
+                        >
                             {guess.damage.map((val)=>{
-                                return <p className="guessList">{val}</p>
+                                return <li>
+                                    <img src={damageIconTable.get(val)} height={20}/>
+                                </li> 
                             })}
+                        </ul>
+                            
                     </li>
 
                 </ul>

@@ -34,30 +34,27 @@ export default function Search(){
     };
     //initialize fuzzy search engine.
     const fuse = new Fuse(weaponsList, fuseOptions);
+    
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement >) =>{
-        if(search!=e.target.value){
-            setSearch(e.target.value)
-        }
-        setSuggestions(fuse.search(search).map(x=>{
+        setSearch(e.target.value)
+        setSuggestions(fuse.search(e.target.value).map(x=>{
             return x.item;
         }));
         
     }
 
     return(
-        <>
-        <form className="search_bar">
-                    <input 
-                        type="text" 
-                        value={search} 
-                        placeholder="Enter a weapon..." 
-                        onChange={handleChange}
-                    />
-                    
-                </form>
-        <SearchSuggestions searchResults={suggestions}/>
-        </>
+        <div className="search_bar">
+            <input 
+                type="text" 
+                value={search} 
+                placeholder="Enter a weapon..." 
+                onChange={handleChange}
+            />
+            <SearchSuggestions searchResults={suggestions}/>
+        </div>
+
                 
                 
     )
