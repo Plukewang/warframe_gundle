@@ -13,9 +13,6 @@ export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
 
     const [ right,wrong] = [String.fromCodePoint(0x2705), String.fromCodePoint(0x274c)];
 
-
-    //console.log(guess.damage)
-
     return(
            
             <li >
@@ -79,3 +76,21 @@ export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
 
     )
 }
+
+//fallback
+export function GuessResultSkeleton(): ReactNode{
+    return <li>
+        <ul className="guessHistory">
+           {
+            //produce an empty list of icons for a fallback. Maybe go for a loading animation.
+            Array(7).map((val,i)=>{
+                return <li 
+                    className="guess"
+                    key={i}>
+                </li>
+            })
+           }
+        </ul>
+    </li>
+}  
+

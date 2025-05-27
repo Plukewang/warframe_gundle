@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 
 
 import './App.css'
 import Search from './ui/search'
 import { useGameStore } from './gamelogic';
-import {  Guess, weaponData } from './types/weaponData';
 import { GuessCorrectness } from './types/guessCorrectness';
-import { GuessResult } from './ui/guess';
+import { GuessResult, GuessResultSkeleton } from './ui/guess';
 import GameEndModal from './ui/GameEndModal';
 
 function App() {
@@ -42,18 +41,24 @@ function App() {
   return (
     <>
       <h1 className='hook_title'>Guess a weapon from Warframe!</h1>
+
       <ul className='guessHistoryList'>
           {
             guessHistory.map((guess: GuessCorrectness, i)=>{
-              return <GuessResult
-                key={i}
-                  guess={guess}
-                  guessImageURL=''
-              />
+              return(
+                <Suspense
+                  fallback={<GuessResultSkeleton/>}
+                >
+                  <GuessResult
+                    key={i}
+                      guess={guess}
+                      guessImageURL=''
+                  />
+              </Suspense>
+              )
             })
           }
       </ul>
-      
       
       <Search/>
       <GameEndModal 

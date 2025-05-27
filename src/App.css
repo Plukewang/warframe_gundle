@@ -30,6 +30,7 @@ body{
     border-radius: 1rem;
     margin: .5rem;
   }
+
 }
 
 .searchSuggestions{
@@ -82,6 +83,7 @@ body{
   gap: 10px;
   list-style-type: none;
   padding-left: 0;
+  margin-bottom: 10px;
 }
 
 .guess{
@@ -178,3 +180,23 @@ body{
 .read-the-docs {
   color: #888;
 }
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1.5s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 

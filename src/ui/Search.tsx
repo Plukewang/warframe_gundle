@@ -9,6 +9,7 @@ export default function Search(){
     //set displayed search param
     const [search, setSearch] = useState("");
     const [suggestions, setSuggestions] = useState<weaponData[]>([]);
+    const [loading,setLoading] = useState(false);
     //generate the list to search
     const weaponsList: weaponData[] = Object.entries(weaponsData.ExportWeapons).map(entry=>entry[1]);
 
@@ -44,6 +45,10 @@ export default function Search(){
         
     }
 
+    const handleLoad = (load: boolean)=>{
+        setLoading(load);
+    }
+
     return(
         <div className="search_bar">
             <input 
@@ -52,7 +57,14 @@ export default function Search(){
                 placeholder="Enter a weapon..." 
                 onChange={handleChange}
             />
-            <SearchSuggestions searchResults={suggestions}/>
+            
+            
+            
+            <SearchSuggestions searchResults={suggestions} loading={handleLoad}/>
+            
+            {
+                loading? <span className="loader"></span> : <></>
+            }
         </div>
 
                 
