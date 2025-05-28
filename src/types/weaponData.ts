@@ -132,7 +132,9 @@ export interface damageTypes{
 
 
 export class Guess{
+    //for calling properties via obj[name]
     [key:string]: any;
+
     name: string='';
     category: string='';
     introduced: string[]=[];
@@ -140,6 +142,7 @@ export class Guess{
     tags: string[]=[];
     isPrime: boolean=false;
     damage: any=null;
+    imgSrc: string = '';
 
     //parameterized constructor
     constructor(
@@ -150,6 +153,7 @@ export class Guess{
         tags: string[] = [],
         isPrime: boolean = false,
         damage: any =null,
+        imgSrc: string = '',
     ) {
         this.name = name;
         this.category = category;
@@ -158,6 +162,7 @@ export class Guess{
         this.tags= tags;
         this.isPrime = isPrime;
         this.damage = damage;
+        this.imgSrc= imgSrc
     }
 
     public compareGuess(other: Guess): GuessCorrectness{
@@ -179,6 +184,7 @@ export class Guess{
             tags,
             isPrime,
             damage,
+            other.imgSrc
         )
     }
 
@@ -191,8 +197,8 @@ export class Guess{
 
             
             if(thisDate===otherDate) continue;
-            if(thisDate>otherDate) return 0;
-            else return 2;
+            if(thisDate>otherDate) return 2;
+            else return 0;
         }
 
         return 1;
@@ -201,8 +207,8 @@ export class Guess{
     private compareMastery(other: Guess): number{
         //high-2low-1equal-0
         if(this.masteryReq===other.masteryReq) return 1;
-        if(this.masteryReq>other.masteryReq) return 0;
-        else return 2;
+        if(this.masteryReq>other.masteryReq) return 2;
+        else return 0;
     }
 
     //filter for equal tags

@@ -37,6 +37,7 @@ export async function fetchRandomWeapon(): Promise<Guess>{
             res.tags,
             res.isPrime,
             res.damage,
+            res.wikiaThumbnail,
         )
     }catch(e){
         console.error(e);
@@ -47,6 +48,7 @@ export async function fetchRandomWeapon(): Promise<Guess>{
 export async function fetchGuess(guess: string): Promise<Guess>{
     try{
         const res = await queryWeapon(guess);
+        console.log(res.wikiaThumbnail)
         return {
             name: res.name,
             category: res.productCategory,
@@ -55,6 +57,7 @@ export async function fetchGuess(guess: string): Promise<Guess>{
             tags: res.tags,
             isPrime: res.isPrime,
             damage: res.damage,
+            imgSrc: res.wikiaThumbnail,
         } as Guess
     }catch(e){
         console.error(e);

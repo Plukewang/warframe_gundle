@@ -9,6 +9,7 @@ export class GuessCorrectness{
     tags: string[]=[];
     isPrime: boolean=false;
     damage: string[]=[];
+    imgSrc: string = '';
 
     constructor(
     name: string='',
@@ -19,6 +20,7 @@ export class GuessCorrectness{
     tags: string[]=[],
     isPrime: boolean=false,
     damage: string[]=[],
+    imgSrc: string = '',
     ) {
         this.name = name;
         this.nameCorrect = nameCorrect;
@@ -28,6 +30,7 @@ export class GuessCorrectness{
         this.tags= tags;
         this.isPrime = isPrime
         this.damage = damage;
+        this.imgSrc = imgSrc;
     }
 
     

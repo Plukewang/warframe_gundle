@@ -27,6 +27,7 @@ export default function SearchSuggestions({searchResults, loading}: searchSugges
                         onClick={
                             async ()=>{
                                 try{
+                                    //setting loading true and false here turns on and off the search loading bar until it is done
                                     loading(true);
                                     const res = await fetchGuess(searchResult.name);
                                     loading(false);

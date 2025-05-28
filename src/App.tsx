@@ -52,7 +52,6 @@ function App() {
                   <GuessResult
                     key={i}
                       guess={guess}
-                      guessImageURL=''
                   />
               </Suspense>
               )

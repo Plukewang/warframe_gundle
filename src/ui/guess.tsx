@@ -4,12 +4,11 @@ import { damageIconTable } from "../utils/damageIcons";
 
 
 interface guessProps{
-    guessImageURL: string;
     guess: GuessCorrectness
     
 }
 
-export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
+export function GuessResult({guess} : guessProps): ReactNode{
 
     const [ right,wrong] = [String.fromCodePoint(0x2705), String.fromCodePoint(0x274c)];
 
@@ -18,8 +17,8 @@ export function GuessResult({guessImageURL='',guess} : guessProps): ReactNode{
             <li >
                 <ul className="guessHistory">
                     {/* Image of the guessed weapon*/}
-                    <li className="guess">
-                        <img src={guessImageURL} alt = {guess.name}/>     
+                    <li className="guess ">
+                        <img className="guessImg" src={guess.imgSrc} alt = {guess.name}/>     
                     </li>
 
                     {/* category of the weapon */}
