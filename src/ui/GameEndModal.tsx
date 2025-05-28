@@ -1,5 +1,6 @@
 import { JSX, ReactNode, useState } from "react";
 import { useGameStore } from "../gamelogic";
+import { CorrectAnswer, GuessResult } from "./guess";
 
 interface GameEndModalProps{
     control: boolean;
@@ -10,7 +11,7 @@ interface GameEndModalProps{
 export default function GameEndModal({control, winLose, closeGame}:GameEndModalProps): JSX.Element{
     const resetGame = useGameStore((state)=>state.resetGame)
     const correctWeapon=useGameStore((state)=>state.correctWeapon);
-
+    const gameHistory=useGameStore((state)=>state.correctWeapon);
     //close the modal and restart
     const onClick = ()=>{
         resetGame();
@@ -22,19 +23,23 @@ export default function GameEndModal({control, winLose, closeGame}:GameEndModalP
 
         
         <div className="modal">
-        {winLose ? 
             <div>
-                <h2>You win!</h2>
-                
+                {winLose ? 
+                    
+                        <h1>You win!</h1>
+                        
+                :
+                        <h1>Better Luck Next Time!</h1>
+                    
+                }
+                    <h2>The correct answer was {correctWeapon.name}</h2>
             </div>
-        :
-            <div>
-                <h2>Better Luck Next Time!</h2>
-            </div>
-        }
-            <h2>The correct answer was {correctWeapon.name}</h2>
+            <CorrectAnswer
+                ans={correctWeapon}            
+            />
+
             <button onClick={onClick}>
-                <p>Start Another Game</p>
+                <h3>Start Another Game</h3>
             </button>
         </div>
         </div>
