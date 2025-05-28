@@ -206,3 +206,42 @@ body{
       transform: rotate(360deg);
   }
   } 
+
+
+  @keyframes fadeDown {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+      display: hidden;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+  
+  .fadeDownAnimation {
+    animation: fadeDown;
+  }
+
+  #pic1{
+    animation-duration: 1s
+  }
+  #pic2{
+    animation-duration: 1.1s;
+  }
+  #pic3{
+    animation-duration: 1.2s;
+  }
+  #pic4{
+    animation-duration: 1.3s;
+  }
+  #pic5{
+    animation-duration: 1.4s;
+  }
+  #pic6{
+    animation-duration: 1.5s;
+  }
+  #pic7{
+    animation-duration: 1.6s;
+  }

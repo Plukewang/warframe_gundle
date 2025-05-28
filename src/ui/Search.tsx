@@ -29,6 +29,7 @@ export default function Search(){
         // fieldNormWeight: 1,
         keys: [
             "name",
+            "uniqueName",
         ]
 
         

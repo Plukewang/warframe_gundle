@@ -17,18 +17,18 @@ export function GuessResult({guess} : guessProps): ReactNode{
             <li >
                 <ul className="guessHistory">
                     {/* Image of the guessed weapon*/}
-                    <li className="guess ">
+                    <li className="guess fadeDownAnimation" id='pic1'>
                         <img className="guessImg" src={guess.imgSrc} alt = {guess.name}/>     
                     </li>
 
                     {/* category of the weapon */}
 
-                    <li className="guess">
+                    <li className="guess fadeDownAnimation" id='pic2'>
                         <h3>Type</h3>
                         <p>{guess.category? right: wrong}</p>
                     </li>
                     {/* release date of the weapon */}
-                    <li className="guess">
+                    <li className="guess fadeDownAnimation"id='pic3'>
                         <h3>Released</h3>
                         <p >{GuessCorrectness.toSymbol(guess.introduced)}</p>
                     </li>
@@ -36,27 +36,27 @@ export function GuessResult({guess} : guessProps): ReactNode{
 
                     {/* mastery requirement of the weapon */}
 
-                    <li className="guess">
+                    <li className="guess fadeDownAnimation" id='pic4'>
                         <h3>MR</h3>
                         <p >{GuessCorrectness.toSymbol(guess.masteryReq)}</p>
                     </li>
 
 
                     {/* Whether the weapon is prime */}
-                    <li className="guess">
+                    <li className="guess fadeDownAnimation" id='pic5'>
                         <h3>Prime?</h3>
                         <p>{guess.isPrime? right: wrong}</p>
                     </li>
 
                     {/* the related factions */}
 
-                    <li className="guess">
+                    <li className="guess fadeDownAnimation" id='pic6'>
                         <h3>Factions</h3>
                         <p  className="guessList"> {guess.tags}</p>
                     </li>
 
                     {/* which damage types match */}
-                    <li className="guess ">
+                    <li className="guess  fadeDownAnimation" id='pic7'>
                         <h3>Damage</h3>
                         <ul 
                             className="damageList"
