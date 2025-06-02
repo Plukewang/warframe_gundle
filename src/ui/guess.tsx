@@ -104,7 +104,7 @@ export function CorrectAnswer({ans}: correctAnswerProps): ReactNode{
     
     return(
            
-        <li >
+        <li style={{listStyle:'none'}}>
             <ul className="guessHistory">
                 {/* Image of the guessed weapon*/}
                 <li className="guess fadeDownAnimation" id='pic1'>
@@ -146,7 +146,7 @@ export function CorrectAnswer({ans}: correctAnswerProps): ReactNode{
                 </li>
 
                 {/* which damage types match */}
-                <li className="guess  fadeDownAnimation" id='pic7'>
+                <li className="guess fadeDownAnimation" id='pic7'>
                     <h3>Damage</h3>
                     <ul 
                         className="damageList"

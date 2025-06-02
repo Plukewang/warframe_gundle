@@ -52,12 +52,15 @@ export default function Search(){
 
     return(
         <div className="search_bar">
+            <form>
             <input 
                 type="text" 
                 value={search} 
                 placeholder="Enter a weapon..." 
                 onChange={handleChange}
             />
+            </form>
+            
             
             
             

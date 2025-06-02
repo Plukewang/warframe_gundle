@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react'
 
 
 import './App.css'
-import Search from './ui/search'
+import Search from './ui/Search';
 import { useGameStore } from './gamelogic';
 import { GuessCorrectness } from './types/guessCorrectness';
 import { GuessResult, GuessResultSkeleton } from './ui/guess';
@@ -51,7 +51,7 @@ function App() {
                 >
                   <GuessResult
                     key={i}
-                      guess={guess}
+                    guess={guess}
                   />
               </Suspense>
               )
