@@ -7,6 +7,7 @@ import { useGameStore } from './gamelogic';
 import { GuessCorrectness } from './types/guessCorrectness';
 import { GuessResult, GuessResultSkeleton } from './ui/guess';
 import GameEndModal from './ui/GameEndModal';
+import AboutGameModal from './ui/AboutGameModal';
 
 function App() {
 
@@ -40,7 +41,10 @@ function App() {
 
   return (
     <>
+
       <h1 className='hook_title'>Guess a weapon from Warframe!</h1>
+
+      <AboutGameModal/>
 
       <ul className='guessHistoryList'>
           {

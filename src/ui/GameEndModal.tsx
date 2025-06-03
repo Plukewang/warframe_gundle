@@ -11,7 +11,7 @@ interface GameEndModalProps{
 export default function GameEndModal({control, winLose, closeGame}:GameEndModalProps): JSX.Element{
     const resetGame = useGameStore((state)=>state.resetGame)
     const correctWeapon=useGameStore((state)=>state.correctWeapon);
-    const gameHistory=useGameStore((state)=>state.correctWeapon);
+
     //close the modal and restart
     const onClick = ()=>{
         resetGame();
