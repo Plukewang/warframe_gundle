@@ -107,6 +107,19 @@ body{
 
 }
 
+.howToPlay{
+  background-color: #404040;
+  color: white;
+  
+  h3{
+    margin: 0;
+  }
+}
+.howToPlay:hover{
+  background-color: #242424;
+  border: 1px solid white;
+}
+
 
 .modalHidden{
   display: none;

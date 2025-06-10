@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { combine } from 'zustand/middleware'
 import { GuessCorrectness } from './types/guessCorrectness';
 import { fetchRandomWeapon } from './utils/getWeapons';
-import { Guess } from './types/weaponData';
+
 
 
 /**
@@ -42,7 +42,7 @@ export const useGameStore = create(
                 },
                 setGuesses: (guesses: GuessCorrectness[]) =>{
                     if(guesses?.length < 5){
-                        set((state) =>({
+                        set(() =>({
                             guessHistory:
                                 [...guesses]
                         }))

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { ReactNode } from "react";
 import { weaponData } from "../types/weaponData";
 import { useGameStore } from "../gamelogic";
 import { fetchGuess } from "../utils/getWeapons";
@@ -31,6 +31,7 @@ export default function SearchSuggestions({searchResults, loading}: searchSugges
                                     loading(true);
                                     const res = await fetchGuess(searchResult.name);
                                     loading(false);
+                                    
                                     addGuestHistory(correctGuess.compareGuess(res));
                                     sessionStorage.setItem('game', JSON.stringify(guessHistory));
                                 }catch(e){

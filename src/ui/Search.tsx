@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
 import SearchSuggestions from "./SearchSuggestions"
 import weaponsData from "../data.json"
 import Fuse from 'fuse.js'

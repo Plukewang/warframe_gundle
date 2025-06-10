@@ -7,8 +7,11 @@ export default function AboutGameModal(){
     const closeModal = ()=>setOpen(false);
     return (
         <>  
-            <button onClick={openModal}>
-                How to play
+            <button 
+                className="howToPlay"
+                onClick={openModal}
+            >
+                <h3>How to play</h3>
             </button>
             <div className={open? "darkBG" : "modalHidden"}>
                 <div className="modal">

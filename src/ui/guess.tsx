@@ -83,7 +83,7 @@ export function GuessResultSkeleton(): ReactNode{
         <ul className="guessHistory">
            {
             //produce an empty list of icons for a fallback. Maybe go for a loading animation.
-            Array(7).map((val,i)=>{
+            Array(7).map((_,i)=>{
                 return <li 
                     className="guess"
                     key={i}>
