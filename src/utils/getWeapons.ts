@@ -1,6 +1,6 @@
 import weaponsData from '../data.json'
 import { queryWeapon } from '../fetch';
-import {Guess,  weaponQuery} from '../types/weaponData';
+import {Guess} from '../types/weaponData';
 /**
  * Array-fy the data.json and spit out a random weapon.
  * 
@@ -48,7 +48,7 @@ export async function fetchRandomWeapon(): Promise<Guess>{
 export async function fetchGuess(guess: string): Promise<Guess>{
     try{
         const res = await queryWeapon(guess);
-        console.log(res.wikiaThumbnail)
+
         return {
             name: res.name,
             category: res.productCategory,
