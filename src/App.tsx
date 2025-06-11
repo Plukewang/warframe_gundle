@@ -5,9 +5,10 @@ import './App.css'
 import Search from './ui/Search';
 import { useGameStore } from './gamelogic';
 import { GuessCorrectness } from './types/guessCorrectness';
-import { GuessResult, GuessResultSkeleton } from './ui/guess';
+import { GuessResult, GuessResultSkeleton } from './ui/Guess';
 import GameEndModal from './ui/GameEndModal';
 import AboutGameModal from './ui/AboutGameModal';
+import { fetchRandomWeapon } from './utils/getWeapons';
 
 function App() {
 
@@ -15,9 +16,19 @@ function App() {
   const guessHistory = useGameStore((state)=>state.guessHistory);
   const setHistory = useGameStore((state)=>state.setGuesses);
   const correctGuess = useGameStore((state)=>state.correctWeapon);
+  const setCorrectWeapon = useGameStore((state)=>state.setCorrectWeapon);
   
 
   const [gameEnd, setGameEnd] = useState<boolean>(false);
+
+  const getCorrectWeapon = async () =>{
+      try{
+        const res = await fetchRandomWeapon();
+        setCorrectWeapon(res);
+      }catch(error){
+        console.error(error);
+      }
+  }
 
   
    /**
@@ -25,7 +36,18 @@ function App() {
    */
    useEffect(()=>{
       setHistory(JSON.parse(sessionStorage.getItem('game')|| JSON.stringify([])));
-  },[])
+
+  },[]);
+
+  /**
+   * Load new correct weapon on first render
+   */
+  useEffect(()=>{
+    if(correctGuess.name === ''){
+      getCorrectWeapon();
+    }
+  },[]);
+
 
   /**
    * Sync state with correct answer
@@ -51,10 +73,11 @@ function App() {
             guessHistory.map((guess: GuessCorrectness, i)=>{
               return(
                 <Suspense
+                key={i}
                   fallback={<GuessResultSkeleton/>}
                 >
                   <GuessResult
-                    key={i}
+                    
                     guess={guess}
                   />
               </Suspense>
@@ -69,10 +92,6 @@ function App() {
         winLose={guessHistory[guessHistory.length-1]?.name===correctGuess.name? true:false}
         closeGame={()=>setGameEnd(false)}
       />
-
-      
-      
-
 
     </>
   )
