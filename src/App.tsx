@@ -5,10 +5,10 @@ import './App.css'
 import Search from './ui/Search';
 import { useGameStore } from './gamelogic';
 import { GuessCorrectness } from './types/guessCorrectness';
-import { GuessResult, GuessResultSkeleton } from './ui/Guess';
 import GameEndModal from './ui/GameEndModal';
 import AboutGameModal from './ui/AboutGameModal';
 import { fetchRandomWeapon } from './utils/getWeapons';
+import { GuessResult, GuessResultSkeleton } from './ui/GuessResults';
 
 function App() {
 

@@ -1,6 +1,7 @@
 import { JSX } from "react";
 import { useGameStore } from "../gamelogic";
-import { CorrectAnswer } from "./Guess";
+import { CorrectAnswer } from "./GuessResults";
+
 
 interface GameEndModalProps{
     control: boolean;
